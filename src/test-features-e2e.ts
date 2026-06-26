@@ -21,7 +21,7 @@ if (fs.existsSync(envPath)) {
 }
 
 const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL || "http://127.0.0.1:3210";
-const internalKey = process.env.POLARIS_CONVEX_INTERNAL_KEY;
+const internalKey = process.env.POLARIS_CONVEX_INTERNAL_KEY || "";
 
 if (!internalKey) {
   console.error("POLARIS_CONVEX_INTERNAL_KEY not found in .env.local!");
@@ -35,8 +35,8 @@ console.log("Internal Key:", internalKey);
 const convex = new ConvexHttpClient(convexUrl);
 
 // Initialize Inngest Client pointing to local dev server
-const inngest = new Inngest({ 
-  id: "polaris", 
+const inngest = new Inngest({
+  id: "polaris",
   eventKey: "local",
   urls: {
     event: "http://localhost:8288/e/local",
@@ -64,7 +64,7 @@ async function runTests() {
 
   // Test 2: File Explorer operations (Folders and Files)
   console.log("\n--- Test 2: File Explorer Operations ---");
-  
+
   // Create a folder named "src"
   const folderId = await convex.mutation(api.system.createFolder, {
     internalKey,
@@ -136,7 +136,7 @@ async function runTests() {
 
   // Test 4: Chat System & AI Agent processing (mock mode)
   console.log("\n--- Test 4: Chat System & AI Integration (Mock Fallback) ---");
-  
+
   // Create user message
   const userMsgId = await convex.mutation(api.system.createMessage, {
     internalKey,
@@ -175,17 +175,17 @@ async function runTests() {
   let attempts = 0;
   let assistantResponseDone = false;
   let responseContent = "";
-  
+
   while (attempts < 20) {
     await new Promise(r => setTimeout(r, 1000));
-    
+
     // Fetch recent messages
     const messages = await convex.query(api.system.getRecentMessages, {
       internalKey,
       conversationId,
       limit: 10,
     });
-    
+
     const assistantMsg = messages.find(m => m._id === assistantMsgId);
     if (assistantMsg && assistantMsg.status === "completed") {
       assistantResponseDone = true;
@@ -228,7 +228,7 @@ async function runTests() {
   });
   const hasDeletedFolder = filesAfterDelete.some(f => f._id === folderId);
   const hasDeletedFile = filesAfterDelete.some(f => f._id === fileId);
-  
+
   if (!hasDeletedFolder && !hasDeletedFile) {
     console.log("✅ Checked files after deletion. Recursive cleanup verified.");
   } else {
