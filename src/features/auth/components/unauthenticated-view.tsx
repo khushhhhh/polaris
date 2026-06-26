@@ -8,7 +8,7 @@ import {
   ItemMedia,
   ItemTitle,
 } from "@/components/ui/item";
-import { SignInButton } from "@clerk/nextjs";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export const UnauthenticatedView = () => {
@@ -26,11 +26,11 @@ export const UnauthenticatedView = () => {
             </ItemDescription>
           </ItemContent>
           <ItemActions>
-            <SignInButton>
-              <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" asChild>
+              <Link href="/sign-in">
                 Sign in
-              </Button>
-            </SignInButton>
+              </Link>
+            </Button>
           </ItemActions>
         </Item>
       </div>
