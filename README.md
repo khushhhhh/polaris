@@ -122,7 +122,27 @@ src/
 ---
 
 ## Verification & Testing
-To confirm the local setup status, run the following diagnostics:
+
+To confirm the local setup status and verify all features end-to-end, you can run diagnostics and automated tests:
+
+### 1. Diagnostics
 - **Clerk health check**: Run `clerk doctor`
 - **Convex environment variables**: Run `npx convex env list`
-- **Inngest active functions**: Visit `http://localhost:8288`
+- **Inngest active functions**: Visit the local dashboard at `http://localhost:8288`
+
+### 2. End-to-End Feature Verification Test
+We have included a comprehensive end-to-end local integration test script to verify all core application functionality (project creation, file explorer folder/file operations, editing/saving, and background chat processing via Inngest) completely offline.
+
+To execute the test suite, ensure your development servers (Convex, Inngest, and Next.js) are running, and run:
+```bash
+npx tsx src/test-features-e2e.ts
+```
+
+This script will:
+1. Connect to the local Convex server using the credentials in your `.env.local` file.
+2. Verify project & conversation creation.
+3. Test file explorer actions (recursively creating and reading folders and files).
+4. Verify file editing and renaming.
+5. Simulate user chat inputs, trigger the Inngest processor, and wait for the mock assistant generation to populate the database.
+6. Verify file deletion and cleanup.
+
