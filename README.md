@@ -1,8 +1,8 @@
 # Polaris - Collaborative Browser-Based Cloud IDE
 
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://polaris-pe5h6h8jb-khush3.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://polaris-red-phi.vercel.app/)
 
-**Live URL**: [https://polaris-pe5h6h8jb-khush3.vercel.app/](https://polaris-pe5h6h8jb-khush3.vercel.app/)
+**Live URL**: [https://polaris-red-phi.vercel.app/](https://polaris-red-phi.vercel.app/)
 
 Polaris is a collaborative, browser-based cloud IDE inspired by Cursor AI. It allows developers to build, test, and run code directly in the browser with real-time sync, AI assistant integration, background tasks, and in-browser runtime execution.
 
