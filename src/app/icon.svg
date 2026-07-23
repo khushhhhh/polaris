@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f0a1a"/>
+      <stop offset="100%" stop-color="#1a0f2e"/>
+    </linearGradient>
+    <linearGradient id="star" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="40%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="ray" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="bracket" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#67e8f9"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="10" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <!-- Outer compass circle -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="url(#star)" stroke-width="2" opacity="0.15"/>
+  <!-- Diagonal rays (subtle) -->
+  <g stroke="url(#ray)" stroke-width="2" opacity="0.15">
+    <line x1="256" y1="56" x2="256" y2="156"/>
+    <line x1="256" y1="356" x2="256" y2="456"/>
+    <line x1="56" y1="256" x2="156" y2="256"/>
+    <line x1="356" y1="256" x2="456" y2="256"/>
+  </g>
+  <!-- North Star - 4-pointed star -->
+  <g filter="url(#glow)">
+    <!-- Vertical diamond (tall) -->
+    <polygon points="256,80 280,230 256,432 232,230" fill="url(#star)" opacity="0.9"/>
+    <!-- Horizontal diamond (wide) -->
+    <polygon points="80,256 230,232 432,256 230,280" fill="url(#star)" opacity="0.7"/>
+  </g>
+  <!-- Code brackets -->
+  <g filter="url(#softglow)">
+    <!-- Left bracket < -->
+    <polyline points="175,200 135,256 175,312" fill="none" stroke="url(#bracket)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+    <!-- Right bracket > -->
+    <polyline points="337,200 377,256 337,312" fill="none" stroke="url(#bracket)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+  </g>
+  <!-- Center bright core -->
+  <circle cx="256" cy="256" r="20" fill="#c4b5fd" filter="url(#glow)" opacity="0.9"/>
+  <circle cx="256" cy="256" r="8" fill="#f5f3ff"/>
+</svg>
